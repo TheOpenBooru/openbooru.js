@@ -1,0 +1,19 @@
+{
+  "name": "openbooru",
+  "version": "1.3.2",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "npx tsc"
+  },
+  "author": "Ben-Brady",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "jest": "^28.1.3"
+  }
+}
