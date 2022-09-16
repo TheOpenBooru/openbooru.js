@@ -3,9 +3,7 @@ import request from "../request";
 
 
 export default async function register(apiUrl: string, username: string, password: string): Promise<string> {
-    let r = await request("/account/register", {
-        apiUrl: apiUrl,
-        method: "POST",
+    let r = await request(apiUrl, "POST", "/account/register", {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
         responseCodeErrors: {

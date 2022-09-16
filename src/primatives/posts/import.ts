@@ -3,10 +3,8 @@ import * as Errors from "../../errors"
 import request from "../request"
 
 
-export async function Import(apiUrl: string, url: string, token:string = null): Promise<Array<Post>> {
-    let r = await request("/posts/import", {
-        apiUrl: apiUrl,
-        method: "POST",
+export async function Import(apiUrl: string, token:string|null, url: string): Promise<Array<Post>> {
+    let r = await request(apiUrl, "POST", "/posts/import", {
         token: token,
         body: url,
         responseCodeErrors: {

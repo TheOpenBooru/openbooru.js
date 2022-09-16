@@ -7,10 +7,8 @@ import request from "../request";
  * @param post_id 
  * @param token 
  */
-export async function Delete(apiUrl: string, post_id: number, token: string = null) {
-    await request(`/post/${post_id}`, {
-        method: "DELETE",
+export async function Delete(apiUrl: string, token: string|null, post_id: number) {
+    await request(apiUrl, "DELETE", `/post/${post_id}`, {
         token: token,
-        apiUrl: apiUrl,
     })
 }

@@ -4,6 +4,7 @@ export class PermissionError extends Error{}
 export class InternalServerError extends Error{}
 export class BadCaptcha extends Error{ }
 
+export class LoginRequired extends Error{}
 export class LoginFailure extends Error{}
 export class PasswordReset extends Error{ }
 export class PasswordDoesntMeetRequirements extends Error{}

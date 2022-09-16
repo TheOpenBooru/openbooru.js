@@ -5,10 +5,8 @@ import request from "../request";
 /**
 * Sets the profile's setting field to the selected string, cannot be larger than 4096 characters
 */
-export async function updateSettings(apiUrl: string, settings:string, token: string) {
-    await request("/profile/settings", {
-        apiUrl: apiUrl,
-        method: "PUT",
+export async function updateSettings(apiUrl: string, token: string, settings:string) {
+    await request(apiUrl, "PUT", "/profile/settings", {
         body: settings,
         token: token,
         responseCodeErrors: {

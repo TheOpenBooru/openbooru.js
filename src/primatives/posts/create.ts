@@ -4,12 +4,10 @@ import { Post } from "../../types";
 import request from "../request";
 
 
-export async function create(apiUrl:string, file: File, token: String): Promise<Post> {
+export async function create(apiUrl:string, token: string|null, file: File): Promise<Post> {
     let form = new FormData();
     form.append("image", file);
-    let r = await request("/posts/create", {
-        apiUrl: apiUrl,
-        method: "POST",
+    let r = await request(apiUrl, "POST", "/posts/create", {
         body: form,
         token: token,
         responseCodeErrors: {

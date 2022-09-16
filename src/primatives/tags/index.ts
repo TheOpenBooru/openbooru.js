@@ -1,2 +1,2 @@
-import search from "./search";
-export { search };
+export * from "./search";
+export * from "./all";

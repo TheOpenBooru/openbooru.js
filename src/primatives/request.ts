@@ -1,20 +1,27 @@
+// @ts-nocheck
 import * as Errors from "../errors";
 
-export default async function request(url_suffix: string,{
-        method = "GET",
+interface RequestParams {
+    body?: any,
+    token?: string|null,
+    headers?: object,
+    params?: object,
+    responseCodeErrors?: object,
+}
+
+export default async function request(apiUrl:string, method:string, url_suffix: string,{
         body = null,
         headers = {},
         params = {},
-        apiUrl = "http://slate:8443",
         token = null,
         responseCodeErrors = {},
-    }): Promise<Response>
+    }: RequestParams): Promise<Response>
 {
     let url = apiUrl + url_suffix;
     if (token) headers["Authorization"] = "bearer " + token
 
     if (params) {
-        let SearchParams = generateSearchParams(params);
+        let SearchParams = generateParameters(params);
         url += "?" + SearchParams.toString();
     }
 
@@ -43,7 +50,7 @@ export default async function request(url_suffix: string,{
 }
 
 
-function generateSearchParams(params) {
+function generateParameters(params: object) {
     let SearchParams = new URLSearchParams();
     for (let key in params) {
         let value = params[key];

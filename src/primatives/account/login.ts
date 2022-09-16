@@ -3,9 +3,7 @@ import request from "../request";
 
 
 export default async function login(apiUrl: string, username: string, password: string): Promise<string> {
-    let r = await request("/account/login", {
-        apiUrl: apiUrl,
-        method: "POST",
+    let r = await request(apiUrl, "POST", "/account/login", {
         body: `username=${username}&password=${password}`,
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         responseCodeErrors: {

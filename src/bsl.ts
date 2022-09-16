@@ -1,58 +1,66 @@
-import { PostQuery } from "./types";
-
-const DEFAULTS_QUERY = new PostQuery();
+// @ts-nocheck
+import { Post, PostQuery } from "./types";
 
 export function encode(query: PostQuery): string {
     let tags = [];
-    if (query.created_after !== DEFAULTS_QUERY.created_after) {
-        tags.push("created_after:" + query.created_after.toString());
+    
+    if (query.include_tags !== undefined) {
+        query.include_tags.forEach((tag) => tags.push(tag));
     }
-    if (query.created_before !== DEFAULTS_QUERY.created_before) {
-        tags.push("created_before:" + query.created_before.toString());
+    if (query.exclude_tags !== undefined) {
+        query.exclude_tags.forEach((tag) => tags.push("-" + tag));
     }
-    if (query.descending !== DEFAULTS_QUERY.descending) {
-        tags.push(query.descending ? "order:dsc" : "order:asc");
-    }
-    if (query.sort !== DEFAULTS_QUERY.sort) {
+    
+    if (query.sort !== undefined) {
         tags.push("sort:" + query.sort);
     }
-    if (query.md5) {
-        tags.push("md5:" + query.md5);
-    }
-    if (query.sha256) {
-        tags.push("md5:" + query.sha256);
+    if (query.descending !== undefined) {
+        tags.push(query.descending ? "order:dsc" : "order:asc");
     }
 
-    query.include_tags.forEach((tag) => tags.push(tag));
-    query.exclude_tags.forEach((tag) => tags.push("-" + tag));
+    if (query.created_after !== undefined) {
+        tags.push("created_after:" + query.created_after.toString());
+    }
+    if (query.created_before !== undefined) {
+        tags.push("created_before:" + query.created_before.toString());
+    }
+
+    if (query.md5 !== undefined) {
+        tags.push("md5:" + query.md5);
+    }
+    if (query.sha256 !== undefined) {
+        tags.push("sha256:" + query.sha256);
+    }
 
     let output = tags.join(" ");
     return output;
 }
 
 export function decode(bsl: string): PostQuery {
+    const query: PostQuery = {};
+
     bsl += " " // Fix for search for end of section, instead finds end of string
-    let tags = bsl.split(" ");
-    tags = tags.filter((tag) => tag !== "");
+    let tags = bsl.split(" ").filter((tag) => tag !== "")
     
-    function getValue(prefix: string, defaultValue = null) {
-        if (!bsl.includes(prefix)) {
-            return defaultValue;
-        } else {
-            let start = bsl.indexOf(prefix) + prefix.length;
-            let end = bsl.indexOf(" ", start);
-            let value = bsl.slice(start, end);
-            return value
-        }
+
+    function setValue(prefix: string, key:string, mutateFunc:Function|null = null): string {
+        if (!bsl.includes(prefix)) return ""
+
+        let start = bsl.indexOf(prefix) + prefix.length;
+        let end = bsl.indexOf(" ", start);
+        let value = bsl.slice(start, end);
+        
+        if (mutateFunc) value = mutateFunc(value);
+        query[key] = value
     }
+
+    setValue("created_after:", "created_after", Number)
+    setValue("created_before:", "created_before", Number)
+    setValue("sort:", "sort", String)
+    setValue("md5:", "md5", String)
+    setValue("sha256:", "sha256", String)
+    setValue("order:", "descending", (v) => v === "dsc")
     
-    const query = new PostQuery();
-    query.created_after =  getValue("created_after:", DEFAULTS_QUERY.created_after);
-    query.created_before =  getValue("created_before:", DEFAULTS_QUERY.created_before);
-    query.sort =  getValue("sort:", DEFAULTS_QUERY.sort);
-    query.descending =  getValue("order:", "dsc") === "dsc";
-    query.md5 =  getValue("md5:", DEFAULTS_QUERY.md5);
-    query.sha256 =  getValue("sha256:", DEFAULTS_QUERY.sha256);
     query.include_tags =  tags.filter((tag) => !tag.includes(":") && !tag.includes("-"));
     query.exclude_tags = tags
         .filter((tag) => !tag.includes(":") && tag.includes("-"))
