@@ -1,9 +1,9 @@
 {
   "name": "openbooru",
-  "version": "1.4.8",
-  "main": "./dist/index.js",
+  "version": "1.4.9",
+  "main": "dist/index.js",
   "type": "module",
-  "typings": "./dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "test": "npx tsc; jest",
     "build": "./node_modules/.bin/babel src --presets babel-preset-es2015 --out-dir dist; npx tsc",
