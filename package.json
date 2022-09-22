@@ -1,7 +1,7 @@
 {
   "name": "openbooru",
-  "version": "1.4.11",
-  "main": "dist/index.js",
+  "version": "1.4.12",
+  "main": "dist/index",
   "type": "module",
   "typings": "dist/index.d.ts",
   "scripts": {
