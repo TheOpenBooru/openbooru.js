@@ -1,6 +1,6 @@
 {
   "name": "openbooru",
-  "version": "1.5.1",
+  "version": "1.5.4",
   "main": "dist/",
   "typings": "dist/index.d.ts",
   "scripts": {
