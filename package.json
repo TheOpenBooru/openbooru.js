@@ -1,19 +1,12 @@
 {
   "name": "openbooru",
-  "version": "1.4.17",
+  "version": "1.4.18",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "test": "npx tsc; jest",
     "build": "npx tsc",
     "publish": "npm run build"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "browser": "./dist/index.js",
-      "node": "./dist/index.js"
-    }
   },
   "author": "Ben-Brady",
   "license": "ISC",
