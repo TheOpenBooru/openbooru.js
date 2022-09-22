@@ -1,8 +1,7 @@
 {
   "name": "openbooru",
-  "version": "1.4.12",
+  "version": "1.4.13",
   "main": "dist/index",
-  "type": "module",
   "typings": "dist/index.d.ts",
   "scripts": {
     "test": "npx tsc; jest",
