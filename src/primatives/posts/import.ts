@@ -1,9 +1,13 @@
-import { PostQuery, Post } from "../../types"
+import type { PostQuery, Post } from "../../types"
 import * as Errors from "../../errors"
 import request from "../request"
+import { ApiData, DefaultApi, DefaultApiData } from "../interface";
 
 
-export async function Import(apiUrl: string, token:string|null, url: string): Promise<Array<Post>> {
+export async function Import(
+        url: string,
+        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+    ): Promise<Array<Post>> {
     let r = await request(apiUrl, "POST", "/posts/import", {
         token: token,
         body: url,

@@ -16,4 +16,6 @@ export class PostNotFound extends Error{}
 export class PostAlreadyExists extends Error{}
 export class PostCreationFailure extends Error{}
 export class PostImportFailure extends Error{}
-export class PostEditFailure extends Error{}
+export class PostEditFailure extends Error{ }
+
+export class TagEditFailure extends Error{}

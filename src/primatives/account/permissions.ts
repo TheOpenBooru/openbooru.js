@@ -1,9 +1,12 @@
 import * as Errors from "../../errors";
-import { Permissions } from "../../types";
+import type { Permissions } from "../../types";
 import request from "../request";
+import { ApiData, DefaultApi, DefaultApiData} from "../interface";
 
 
-export default async function permissions(apiUrl: string, token: string|null = null): Promise<Permissions> {
+export default async function permissions(
+        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+    ): Promise<Permissions> {
     let r = await request(apiUrl, "GET", "/account/permissions", {
         token: token,
         responseCodeErrors: {

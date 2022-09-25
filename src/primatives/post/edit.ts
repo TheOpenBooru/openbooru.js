@@ -1,8 +1,15 @@
 import * as Errors from "../../errors";
 import request from "../request";
+import { ApiData, DefaultApi, DefaultApiData } from "../interface";
 
 
-export async function edit(apiUrl: string, token:string|null, post_id: number, source: string | null, rating: string | null, tags: Array<string> | null) {
+export async function edit(
+        post_id: number,
+        source: string | null,
+        rating: string | null,
+        tags: Array<string> | null,
+        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+    ) {
     let data = JSON.stringify({source, rating, tags})
     await request(apiUrl, "PATCH", `/post/${post_id}`, {
         token: token,

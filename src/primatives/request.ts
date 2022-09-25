@@ -2,7 +2,7 @@
 import * as Errors from "../errors";
 
 interface RequestParams {
-    body?: any,
+    body?: any|null,
     token?: string|null,
     headers?: object,
     params?: object,

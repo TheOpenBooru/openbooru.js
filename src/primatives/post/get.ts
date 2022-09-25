@@ -1,10 +1,15 @@
 import * as Errors from "../../errors";
 import request from "../request";
-import { Post } from "../../types";
+import { ApiData, DefaultApi, DefaultApiData } from "../interface";
+import type { Post } from "../../types";
 
 
-export async function get(apiUrl: string, token:string|null, id: number): Promise<Post> {
+export async function get(
+        id: number,
+        { apiUrl=DefaultApi, token=null }: ApiData = DefaultApiData,
+    ): Promise<Post> {
     let r = await request(apiUrl, "GET", `/post/${id}`, {
+        token: token,
         responseCodeErrors: {
             404:Errors.PostNotFound,
         }

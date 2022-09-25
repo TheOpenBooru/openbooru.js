@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Post, PostQuery } from "./types";
+import type { Post, PostQuery } from "./types";
 
 export function encode(query: PostQuery): string {
     let tags = [];

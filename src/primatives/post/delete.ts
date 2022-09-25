@@ -1,13 +1,11 @@
 import * as Errors from "../../errors";
 import request from "../request";
+import { ApiData, DefaultApi, DefaultApiData } from "../interface";
 
-/**
- * Delete's the current selected Post
- * @param apiUrl 
- * @param post_id 
- * @param token 
- */
-export async function Delete(apiUrl: string, token: string|null, post_id: number) {
+export async function Delete(
+        post_id: number,
+        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+    ) {
     await request(apiUrl, "DELETE", `/post/${post_id}`, {
         token: token,
     })

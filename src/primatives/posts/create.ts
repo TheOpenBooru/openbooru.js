@@ -1,10 +1,13 @@
 import * as Errors from "../../errors";
-import reqeust from "../request";
-import { Post } from "../../types";
+import { ApiData, DefaultApi, DefaultApiData} from "../interface";
+import type { Post } from "../../types";
 import request from "../request";
 
 
-export async function create(apiUrl:string, token: string|null, file: File): Promise<Post> {
+export async function create(
+        file: File,
+        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+    ): Promise<Post> {
     let form = new FormData();
     form.append("image", file);
     let r = await request(apiUrl, "POST", "/posts/create", {
