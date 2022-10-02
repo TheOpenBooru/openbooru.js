@@ -1,5 +1,5 @@
 import OpenBooru from "./booru";
-export * as Primatives from "./primatives";
+export * from "./primatives";
 export * as BSL from "./bsl"
 export * as Types from "./types"
 

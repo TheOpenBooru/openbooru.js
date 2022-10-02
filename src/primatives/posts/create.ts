@@ -6,17 +6,18 @@ import request from "../request";
 
 export async function create(
         file: File,
-        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+        { apiUrl = DefaultApi, token = null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ): Promise<Post> {
     let form = new FormData();
     form.append("image", file);
-    let r = await request(apiUrl, "POST", "/posts/create", {
+    let r = await request("POST", "/posts/create", {
         body: form,
-        token: token,
         responseCodeErrors: {
             400: Errors.PostCreationFailure,
             409: Errors.PostAlreadyExists,
-        }
+        },
+        apiUrl,
+        token: token,
     })
 
     let post = await r.json();

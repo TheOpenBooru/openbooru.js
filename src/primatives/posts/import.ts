@@ -6,15 +6,17 @@ import { ApiData, DefaultApi, DefaultApiData } from "../interface";
 
 export async function Import(
         url: string,
-        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+        { apiUrl = DefaultApi, token = null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ): Promise<Array<Post>> {
-    let r = await request(apiUrl, "POST", "/posts/import", {
-        token: token,
+    let r = await request("POST", "/posts/import", {
+        apiUrl,
+        token,
+        hcatpcha_response,
         body: url,
         responseCodeErrors: {
             400: Errors.PostImportFailure,
             409: Errors.PostAlreadyExists,
-        }
+        },
     })
 
     let posts = await r.json()

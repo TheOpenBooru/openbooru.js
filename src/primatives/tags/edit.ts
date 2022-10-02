@@ -8,10 +8,9 @@ export async function edit(
         namespace: string | null,
         parents: string[],
         siblings: string[],
-        {apiUrl=DefaultApi, token=null}: ApiData = DefaultApiData,
+        {apiUrl=DefaultApi, token=null, hcatpcha_response=null}: ApiData = DefaultApiData,
     ): Promise<Tag> {
-    let r = await request(apiUrl, "POST", "/tags/edit", {
-        token: token,
+    let r = await request("POST", "/tags/edit", {
         params: { tag },
         body: JSON.stringify({
             namespace,
@@ -21,6 +20,9 @@ export async function edit(
         headers: {
             "Content-Type": "application/json",
         },
+        apiUrl,
+        token,
+        hcatpcha_response
     })
 
     if (r.status === 200){

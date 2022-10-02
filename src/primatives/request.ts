@@ -1,24 +1,33 @@
 // @ts-nocheck
 import * as Errors from "../errors";
+import { ApiData, DefaultApi, DefaultApiData } from "./interface";
 
 interface RequestParams {
     body?: any|null,
-    token?: string|null,
     headers?: object,
     params?: object,
     responseCodeErrors?: object,
+    apiUrl?: string|null,
+    hcatpcha_response?: string|null,
+    token?: string|null,
 }
 
-export default async function request(apiUrl:string, method:string, url_suffix: string,{
-        body = null,
-        headers = {},
-        params = {},
-        token = null,
-        responseCodeErrors = {},
-    }: RequestParams): Promise<Response>
-{
+export default async function request(
+        method: string,
+        url_suffix: string,
+        {
+            body = null,
+            headers = {},
+            params = {},
+            responseCodeErrors = {},
+            apiUrl = DefaultApi,
+            catpcha_response = null,
+            token = null
+        }: RequestParams,
+    ): Promise<Response> {
     let url = apiUrl + url_suffix;
     if (token) headers["Authorization"] = "bearer " + token
+    if (catpcha_response !== null) params["h-captcha-response"] = captcha_response
 
     if (params) {
         let SearchParams = generateParameters(params);

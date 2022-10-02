@@ -6,13 +6,13 @@ import type { Post } from "../../types";
 
 export async function get(
         id: number,
-        { apiUrl=DefaultApi, token=null }: ApiData = DefaultApiData,
+        { apiUrl=DefaultApi, token=null, hcatpcha_response=null}: ApiData = DefaultApiData,
     ): Promise<Post> {
-    let r = await request(apiUrl, "GET", `/post/${id}`, {
-        token: token,
+    let r = await request("GET", `/post/${id}`, {
         responseCodeErrors: {
             404:Errors.PostNotFound,
-        }
+        },
+        token, apiUrl, hcatpcha_response,
     })
     
     let post = await r.json();

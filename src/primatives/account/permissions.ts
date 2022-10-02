@@ -5,10 +5,11 @@ import { ApiData, DefaultApi, DefaultApiData} from "../interface";
 
 
 export default async function permissions(
-        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+        { apiUrl=DefaultApi, token=null }: ApiData = DefaultApiData,
     ): Promise<Permissions> {
-    let r = await request(apiUrl, "GET", "/account/permissions", {
-        token: token,
+    let r = await request("GET", "/account/permissions", {
+        apiUrl,
+        token,
         responseCodeErrors: {
             401: Errors.LoginFailure,
         }

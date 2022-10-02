@@ -7,10 +7,12 @@ import { ApiData, DefaultApi, DefaultApiData} from "../interface";
 * Get the profile for the an account
 */
 export async function profile(
-        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+        { apiUrl = DefaultApi, token = null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ): Promise<Profile> {
-    let r = await request(apiUrl, "GET", "/profile", {
-        token: token,
+    let r = await request("GET", "/profile", {
+        apiUrl,
+        token,
+        hcatpcha_response,
     })
     let profile = r.json()
     return profile;

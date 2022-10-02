@@ -4,9 +4,11 @@ import { ApiData, DefaultApi, DefaultApiData } from "../interface";
 
 export async function Delete(
         post_id: number,
-        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+        { apiUrl = DefaultApi, token = null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ) {
-    await request(apiUrl, "DELETE", `/post/${post_id}`, {
-        token: token,
+    await request("DELETE", `/post/${post_id}`, {
+        apiUrl,
+        token,
+        hcatpcha_response,
     })
 }

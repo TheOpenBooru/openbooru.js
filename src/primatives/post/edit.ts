@@ -8,16 +8,18 @@ export async function edit(
         source: string | null,
         rating: string | null,
         tags: Array<string> | null,
-        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+        { apiUrl = DefaultApi, token = null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ) {
     let data = JSON.stringify({source, rating, tags})
-    await request(apiUrl, "PATCH", `/post/${post_id}`, {
-        token: token,
+    await request("PATCH", `/post/${post_id}`, {
         body: data,
         headers: { "Content-Type": "application/json" },
         responseCodeErrors: {
             400: Errors.PostEditFailure,
             404: Errors.PostNotFound,
-        }
+        },
+        token,
+        hcatpcha_response,
+        apiUrl,
     })
 }

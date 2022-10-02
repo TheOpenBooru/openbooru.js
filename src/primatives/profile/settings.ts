@@ -8,13 +8,15 @@ import { ApiData, DefaultApi, DefaultApiData} from "../interface";
 */
 export async function updateSettings(
         settings: string, 
-        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+        { apiUrl = DefaultApi, token = null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ) {
-    await request(apiUrl, "PUT", "/profile/settings", {
+    await request("PUT", "/profile/settings", {
         body: settings,
-        token: token,
         responseCodeErrors: {
             400: Errors.SettingsTooLarge,
-        }
+        },
+        apiUrl,
+        token,
+        hcatpcha_response
     })
 }

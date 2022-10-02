@@ -3,10 +3,12 @@ import request from "../request"
 import { ApiData, DefaultApi, DefaultApiData } from "../interface"
 
 export async function all(
-        { apiUrl = DefaultApi, token = null }: ApiData = DefaultApiData,
+        { apiUrl = DefaultApi, token = null, hcatpcha_response = null }: ApiData = DefaultApiData,
     ): Promise<Array<Tag>> {
-    let r = await request(apiUrl, "GET", "/tags/all", {
-        token: token,
+    let r = await request("GET", "/tags/all", {
+        apiUrl,
+        token,
+        hcatpcha_response
     })
     let tags = await r.json()
     return tags

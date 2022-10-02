@@ -4,11 +4,13 @@ import { ApiData, DefaultApi, DefaultApiData } from "../interface"
 
 export async function search(
         query: TagQuery,
-        {apiUrl=DefaultApi, token=null}: ApiData = DefaultApiData,
+        {apiUrl=DefaultApi, token=null, hcatpcha_response=null}: ApiData = DefaultApiData,
     ): Promise<Array<Tag>> {
-    let r = await request(apiUrl, "GET", "/tags/search", {
+    let r = await request("GET", "/tags/search", {
         params: query,
-        token: token,
+        apiUrl,
+        token,
+        hcatpcha_response
     })
     let tags = await r.json()
     return tags
