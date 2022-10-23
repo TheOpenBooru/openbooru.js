@@ -4,7 +4,7 @@ import { ApiData, DefaultApi, DefaultApiData } from "../interface";
 
 
 export async function edit(
-        post_id: number,
+        post_id: number|string,
         source: string | null,
         rating: string | null,
         tags: Array<string> | null,

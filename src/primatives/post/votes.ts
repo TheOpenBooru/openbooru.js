@@ -6,7 +6,7 @@ import type { Post } from "../../types";
 
 
 export async function add_upvote(
-        id: number,
+        id: number|string,
         { apiUrl=DefaultApi, token=null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ) {
     let r = await request("POST", `/post/${id}/upvote/add`, {
@@ -20,7 +20,7 @@ export async function add_upvote(
 
 
 export async function remove_upvote(
-        id: number,
+        id: number|string,
         { apiUrl=DefaultApi, token=null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ) {
     let r = await request("POST", `/post/${id}/upvote/remove`, {
@@ -34,7 +34,7 @@ export async function remove_upvote(
 
 
 export async function add_downvote(
-        id: number,
+        id: number|string,
         { apiUrl=DefaultApi, token=null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ) {
     let r = await request("POST", `/post/${id}/downvote/add`, {
@@ -48,7 +48,7 @@ export async function add_downvote(
 
 
 export async function remove_downvote(
-        id: number,
+        id: number|string,
         { apiUrl=DefaultApi, token=null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ) {
     let r = await request("POST", `/post/${id}/downvote/remove`, {

@@ -5,7 +5,7 @@ import type { Post } from "../../types";
 
 
 export async function get(
-        id: number,
+        id: number|string,
         { apiUrl=DefaultApi, token=null, hcatpcha_response=null}: ApiData = DefaultApiData,
     ): Promise<Post> {
     let r = await request("GET", `/post/${id}`, {
