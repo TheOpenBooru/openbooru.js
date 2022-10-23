@@ -37,9 +37,10 @@ export default async function request(
     let r = await fetch(url, {
         method: method,
         body: body,
+        headers: headers,
         cache: "no-cache",
     })
-
+    
     if (r.status === 200) {
         return r
     } else {
@@ -50,7 +51,7 @@ export default async function request(
         } else {
             switch (r.status) {
                 case 422: throw new Errors.ValidationError()
-                case 429: throw new Errors.RateLimited()
+                case 429: throw new Errors.RateLimited(Number(r.headers["Retry-After"]))
                 case 500: throw new Errors.InternalServerError(text)
                 default: throw new Error(text)
             }
