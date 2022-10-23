@@ -21,14 +21,18 @@ export default async function request(
             params = {},
             responseCodeErrors = {},
             apiUrl = DefaultApi,
-            catpcha_response = null,
+            hcatpcha_response = null,
             token = null
         }: RequestParams,
     ): Promise<Response> {
+    if (token) {
+        headers["Authorization"] = "bearer " + token
+    }
+    if (hcatpcha_response !== null) {
+        params["h-captcha-response"] = captcha_response
+    }
+    
     let url = apiUrl + url_suffix;
-    if (token) headers["Authorization"] = "bearer " + token
-    if (catpcha_response !== null) params["h-captcha-response"] = captcha_response
-
     if (params) {
         let SearchParams = generateParameters(params);
         url += "?" + SearchParams.toString();
