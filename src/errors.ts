@@ -1,5 +1,11 @@
 export class ValidationError extends Error{}
-export class RateLimited extends Error{}
+export class RateLimited extends Error{
+    try_after: number;
+    constructor(try_after: number) {
+        super(`Ratelimted: ${try_after}s`);
+        this.try_after = try_after;
+    }
+}
 export class PermissionError extends Error{}
 export class InternalServerError extends Error{}
 export class BadCaptcha extends Error{ }
