@@ -1,14 +1,14 @@
 export type Profile = {
     id: string;
-    created_at: bigint;
+    created_at: number;
     username: string;
     level: string;
-    posts: Array<bigint>;
-    comments: Array<bigint>;
+    posts: Array<number>;
+    comments: Array<number>;
     email: string;
     settings: string;
-    upvotes: Array<bigint>;
-    downvotes: Array<bigint>;
+    upvotes: Array<number>;
+    downvotes: Array<number>;
 }
 
 export type User = {
