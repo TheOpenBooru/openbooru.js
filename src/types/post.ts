@@ -72,9 +72,9 @@ export type Post = {
     created_at: number;
     uploader: number;
     deleted: boolean;
-    source: string;
+    sources: string[];
     rating: Rating;
-    media_type: string;
+    type: string;
 
     hashes: Hashes;
     tags: string[];
@@ -97,10 +97,18 @@ export type PostQuery = {
     include_tags?: string[];
     exclude_tags?: string[];
 
-    created_after?: number|null;
-    created_before?: number|null;
+    upvotes_gt?: number;
+    upvotes_lt?: number;
 
-    ids?: number[]|null;
-    md5?: string|null;
-    sha256?: string|null;
+    created_after?: number;
+    created_before?: number;
+
+    md5?: string;
+    sha256?: string;
+    source?: string;
+    
+    uploaders?: number[];
+    ids?: number[];
+    media_types?: MediaType[];
+    ratings?: Rating[];
 }
