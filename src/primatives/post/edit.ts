@@ -5,12 +5,12 @@ import { ApiData, DefaultApi, DefaultApiData } from "../interface";
 
 export async function edit(
         post_id: number|string,
-        source: string | null,
+        sources: string[],
         rating: string | null,
         tags: Array<string> | null,
         { apiUrl = DefaultApi, token = null, hcatpcha_response=null }: ApiData = DefaultApiData,
     ) {
-    let data = JSON.stringify({source, rating, tags})
+    let data = JSON.stringify({sources, rating, tags})
     await request("PATCH", `/post/${post_id}`, {
         body: data,
         headers: { "Content-Type": "application/json" },
