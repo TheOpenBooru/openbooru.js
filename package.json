@@ -1,9 +1,10 @@
 {
   "name": "openbooru",
-  "version": "2.2.1",
-  "main": "dist/",
+  "version": "2.2.3",
+  "main": "./dist/src/index.js",
   "files": [
-    "./dist/*"
+    "dist",
+    "README.md"
   ],
   "typings": "dist/index.d.ts",
   "scripts": {
