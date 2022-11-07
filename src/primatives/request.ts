@@ -42,7 +42,6 @@ export default async function request(
         method: method,
         body: body,
         headers: headers,
-        cache: "no-cache",
     })
     
     if (r.status === 200) {
