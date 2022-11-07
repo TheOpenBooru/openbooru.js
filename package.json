@@ -1,7 +1,7 @@
 {
   "name": "openbooru",
-  "version": "2.2.5",
-  "main": "./dist/src/index.js",
+  "version": "2.2.6",
+  "main": "./dist/index.js",
   "files": [
     "dist",
     "README.md"
@@ -10,7 +10,7 @@
   "scripts": {
     "test": "npx jest",
     "build": "npx tsc",
-    "publish": "npm run build"
+    "publish": "yarn build"
   },
   "author": "Ben-Brady",
   "license": "ISC",
