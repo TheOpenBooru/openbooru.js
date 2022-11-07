@@ -1,6 +1,6 @@
 {
   "name": "openbooru",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "main": "./dist/src/index.js",
   "files": [
     "dist",
