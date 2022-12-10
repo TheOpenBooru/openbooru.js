@@ -81,8 +81,8 @@ export type Post = {
     comments: number[];
     edits: PostEdit[];
 
-    full: Image;
-    preview: Image|null;
+    full: Video|Animation|Image;
+    preview: Animation|Image|null;
     thumbnail: Image;
 
     upvotes: number;
