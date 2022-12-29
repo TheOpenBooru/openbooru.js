@@ -49,7 +49,7 @@ export default async function request(
             throw new error(text);
         } else {
             switch (r.status) {
-                case 401: throw new Errors.TokenError()
+                case 401: throw new Errors.InvalidToken()
                 case 422: throw new Errors.ValidationError()
                 case 429: throw new Errors.RateLimited(Number(r.headers["Retry-After"]))
                 case 500: throw new Errors.InternalServerError(text)
