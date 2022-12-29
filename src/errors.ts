@@ -1,3 +1,4 @@
+export class TokenError extends Error{}
 export class ValidationError extends Error{}
 export class RateLimited extends Error{
     try_after: number;

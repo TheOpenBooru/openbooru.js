@@ -3,6 +3,8 @@ export type Permissions = {
     canRegister: Permission,
 
     canViewPosts: Permission,
+    canCreatePosts: Permission,
+    canVotePosts: Permission,
     canSearchPosts: Permission,
     canEditPosts: Permission,
     canDeletePosts: Permission,
@@ -15,9 +17,11 @@ export type Permissions = {
     canSearchUsers: Permission,
     canEditUsers: Permission,
     canDeleteUsers: Permission,
-    canCreatePosts: Permission,
-    canVotePosts: Permission,
     
+    canCreateSubscriptions: Permission,
+    canSearchSubscriptions: Permission,
+    canDeleteSubscriptions: Permission,
+
     canViewProfile: Permission,
     canUpdateSettings: Permission,
 }
