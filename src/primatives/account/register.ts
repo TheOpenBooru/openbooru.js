@@ -9,7 +9,9 @@ export default async function register(
         password: string,
     { apiUrl = DefaultApi, token = null, hcatpcha_response = null }: ApiData = DefaultApiData,
     ): Promise<string> {
-    let r = await request("POST", "/account/register", {
+    let r = await request(
+        "POST",
+        "/account/register", {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
         responseCodeErrors: {
